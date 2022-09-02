@@ -1,0 +1,399 @@
+[
+    {
+        "id": "a7f3042b753876db",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4dd7d3edc5c0c9c5",
+        "type": "mqtt in",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "topic": "iza/sexta/braba",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "322da99b3c3c6c29",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "e2ca9c1984a3e64e"
+            ]
+        ]
+    },
+    {
+        "id": "85209ec0d75c5fc4",
+        "type": "mqtt out",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "topic": "iza/sexta/braba",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "322da99b3c3c6c29",
+        "x": 460,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "36eba6739440c5aa",
+        "type": "serial in",
+        "z": "a7f3042b753876db",
+        "d": true,
+        "name": "",
+        "serial": "6a9284fab4a417c2",
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "85209ec0d75c5fc4"
+            ]
+        ]
+    },
+    {
+        "id": "600e900267ed8bd7",
+        "type": "ui_text",
+        "z": "a7f3042b753876db",
+        "group": "059f062e5271b491",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Enviando",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 760,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "16cda932b1897149",
+        "type": "inject",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{    \"nome\":\"iza\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "85209ec0d75c5fc4"
+            ]
+        ]
+    },
+    {
+        "id": "e2ca9c1984a3e64e",
+        "type": "json",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "a8dcc31865d295e9",
+                "933d467e58d7e39e"
+            ]
+        ]
+    },
+    {
+        "id": "a8dcc31865d295e9",
+        "type": "change",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.nome",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 180,
+        "wires": [
+            [
+                "600e900267ed8bd7"
+            ]
+        ]
+    },
+    {
+        "id": "933d467e58d7e39e",
+        "type": "debug",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e047d603187a9a74",
+        "type": "ui_button",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "group": "059f062e5271b491",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"motor\":180}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "4c060e1d69bef1ba",
+                "41a71e90cde24e3d"
+            ]
+        ]
+    },
+    {
+        "id": "c284614c87ef66d7",
+        "type": "ui_button",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "group": "059f062e5271b491",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"motor\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 700,
+        "wires": [
+            [
+                "4c060e1d69bef1ba",
+                "41a71e90cde24e3d"
+            ]
+        ]
+    },
+    {
+        "id": "4c060e1d69bef1ba",
+        "type": "mqtt out",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "topic": "sexta/braba/top2",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "322da99b3c3c6c29",
+        "x": 450,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "dd6915649b64f0f3",
+        "type": "mqtt in",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "topic": "sexta/braba/top2",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "322da99b3c3c6c29",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "d151241e33dc8a6b"
+            ]
+        ]
+    },
+    {
+        "id": "afcf61a16d93f594",
+        "type": "debug",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d151241e33dc8a6b",
+        "type": "json",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 260,
+        "wires": [
+            [
+                "fb33aa677b0654f0"
+            ]
+        ]
+    },
+    {
+        "id": "fb33aa677b0654f0",
+        "type": "change",
+        "z": "a7f3042b753876db",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.motor",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "afcf61a16d93f594",
+                "600e900267ed8bd7"
+            ]
+        ]
+    },
+    {
+        "id": "41a71e90cde24e3d",
+        "type": "serial out",
+        "z": "a7f3042b753876db",
+        "x": 430,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "322da99b3c3c6c29",
+        "type": "mqtt-broker",
+        "name": "broker.hivemq.com",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6a9284fab4a417c2",
+        "type": "serial-port",
+        "serialport": "COM1",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "059f062e5271b491",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "24f1a4c75f4f74c3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "24f1a4c75f4f74c3",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
